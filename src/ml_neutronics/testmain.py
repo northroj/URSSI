@@ -20,7 +20,7 @@ def read_data( file_name, num_train):
     print("Data loaded")
     return x_data, y_data, x_val, y_val
 
-def normalize_data():
+def normalize_data(y_data, y_val):
     for i in range(np.size(y_data, 0)):
         y_data[i, :10] = y_data[i, :10] / np.max(y_data[i, :10])
         y_data[i, 10:20] = y_data[i, 10:20] / np.max(y_data[i, 10:20])

@@ -3,5 +3,5 @@ requires = ["hatchling"]
 built-backend = "hatchling.build"
 
 [project]
-name = ml_neutronics
-version = 0.1.0
+name = "ml_neutronics"
+version = "0.1.0"

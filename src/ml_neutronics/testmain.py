@@ -74,4 +74,6 @@ tfluxr2 = r2_score(y_val[:,10:20], pred_out[:,10:20])
 
 plot_data(10)
 
+plot_data(13)
+
 

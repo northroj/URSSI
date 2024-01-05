@@ -60,7 +60,7 @@ def plot_data( test_case ):
 normalize_data(y_data, y_val)
 
 time1 = time.time()
-model1 = MLPRegressor(hidden_layer_sizes=(80, 80, 80), learning_rate_init=0.005, tol=1e-6, activation='logistic', max_iter=2000, alpha=0.0001, shuffle=True, solver='adam').fit(x_data, y_data)
+model1 = MLPRegressor(hidden_layer_sizes=(80, 80, 80), learning_rate_init=0.005, tol=1e-6, activation='relu', max_iter=2000, alpha=0.0001, shuffle=True, solver='adam').fit(x_data, y_data)
 time2 = time.time()
 n_epochs = model1.n_iter_
 print("Training done in", n_epochs, "epochs, and ", time2-time1, "seconds")
@@ -72,8 +72,10 @@ kr2 = r2_score(y_val[:,20], pred_out[:,20])
 ffluxr2 = r2_score(y_val[:,:10], pred_out[:,:10])
 tfluxr2 = r2_score(y_val[:,10:20], pred_out[:,10:20])
 
+plt.figure(1)
 plot_data(10)
 
+plt.figure(2)
 plot_data(13)
 
 

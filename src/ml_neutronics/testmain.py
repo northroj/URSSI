@@ -38,21 +38,23 @@ def normalize_data(y_data, y_val):
 def plot_data( test_case ):
     x_cells = np.arange(1,11,1)
     
-    plt.figure(1e+5+test_case)
+    plt.figure(test_case*2)
     plt.plot(x_cells, pred_out[test_case,:10], 'r')
     plt.plot(x_cells, y_val[test_case,:10], 'b')
     plt.xlabel("cell #")
     plt.ylabel('flux')
     plt.title('fast flux')
     plt.legend(["predicted","calculated"])
+    plt.show()
 
-    plt.figure(1e+5+test_case+1)
+    plt.figure(test_case*2+1)
     plt.plot(x_cells,pred_out[test_case,10:20], 'r')
     plt.plot(x_cells, y_val[test_case,10:20], 'b')
     plt.xlabel("cell #")
     plt.ylabel('flux')
     plt.title('thermal flux')
     plt.legend(["predicted","calculated"])
+    plt.show()
 
 
 [x_data,y_data,x_val,y_val] = read_data('testdata2000.csv', 17000)

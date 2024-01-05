@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import r2_score
+import time
 
 def read_data( file_name, num_train):
     data = np.loadtxt(file_name, delimiter=',')
@@ -23,12 +24,15 @@ def read_data( file_name, num_train):
 def normalize_data(y_data, y_val):
     norm_factor1 = np.average(y_data[:, :10])
     norm_factor2 = np.average(y_data[:, 10:20])
+    norm_factork = 1 #np.average(y_data[:, 20])
     for i in range(np.size(y_data, 0)):
         y_data[i, :10] = y_data[i, :10] / norm_factor1
         y_data[i, 10:20] = y_data[i, 10:20] / norm_factor2
+        y_data[i, 20] = y_data[i, 20] / norm_factork
     for i in range(np.size(y_val, 0)):
         y_val[i, :10] = y_val[i, :10] / norm_factor1
         y_val[i, 10:20] = y_val[i, 10:20] / norm_factor2
+        y_val[i, 20] = y_val[i, 20] / norm_factork
     print("Data normalized")
 
 def plot_data( test_case ):
@@ -51,12 +55,15 @@ def plot_data( test_case ):
     plt.legend(["predicted","calculated"])
 
 
-[x_data,y_data,x_val,y_val] = read_data('testdata2000.csv', 6500)
+[x_data,y_data,x_val,y_val] = read_data('testdata2000.csv', 17000)
 
 normalize_data(y_data, y_val)
 
-model1 = MLPRegressor(hidden_layer_sizes=(80,80), learning_rate_init=0.001, tol=1e-6, activation='logistic', max_iter=1000, alpha=0.0001, shuffle=True, solver='adam').fit(x_data, y_data)
+time1 = time.time()
+model1 = MLPRegressor(hidden_layer_sizes=(80, 80, 80), learning_rate_init=0.005, tol=1e-6, activation='logistic', max_iter=2000, alpha=0.0001, shuffle=True, solver='adam').fit(x_data, y_data)
+time2 = time.time()
 n_epochs = model1.n_iter_
+print("Training done in", n_epochs, "epochs, and ", time2-time1, "seconds")
 
 train_r2 = model1.score(x_data, y_data)
 val_r2 = model1.score(x_val, y_val)

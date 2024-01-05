@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import pandas as pd
 
-trials = 5000
+trials = 13000
 numcells = 10
 totaldata = np.zeros((trials, 10*numcells+1))
 

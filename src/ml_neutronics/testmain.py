@@ -38,21 +38,23 @@ def normalize_data(y_data, y_val):
 def plot_data( test_case ):
     x_cells = np.arange(1,11,1)
     
-    plt.figure(1)
+    plt.figure(test_case*2)
     plt.plot(x_cells, pred_out[test_case,:10], 'r')
     plt.plot(x_cells, y_val[test_case,:10], 'b')
     plt.xlabel("cell #")
     plt.ylabel('flux')
     plt.title('fast flux')
     plt.legend(["predicted","calculated"])
+    plt.show()
 
-    plt.figure(2)
+    plt.figure(test_case*2+1)
     plt.plot(x_cells,pred_out[test_case,10:20], 'r')
     plt.plot(x_cells, y_val[test_case,10:20], 'b')
     plt.xlabel("cell #")
     plt.ylabel('flux')
     plt.title('thermal flux')
     plt.legend(["predicted","calculated"])
+    plt.show()
 
 
 [x_data,y_data,x_val,y_val] = read_data('testdata2000.csv', 17000)
@@ -73,5 +75,7 @@ ffluxr2 = r2_score(y_val[:,:10], pred_out[:,:10])
 tfluxr2 = r2_score(y_val[:,10:20], pred_out[:,10:20])
 
 plot_data(10)
+
+plot_data(13)
 
 
